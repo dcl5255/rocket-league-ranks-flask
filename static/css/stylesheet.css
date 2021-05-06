@@ -1,0 +1,44 @@
+.tabs
+{
+    text-align: center;
+    height: 34px;
+    padding-top: 1px;
+    padding-bottom: 0px;
+    background-color: #000;
+}
+
+.tab { 
+     text-align: center;
+    width: 32px;
+    display: inline-block;
+    position: relative;
+    border: 0;
+    background: #fff;
+    color: #fff;
+}
+
+.form-control {
+    color: rgb(181, 175, 166);
+    background-color: rgb(24, 26, 27);
+    border-color: rgb(60, 65, 68);
+}
+
+
+input[type=text]:focus{
+    background-color: black;
+    color: white;
+}
+
+.styled-select select:focus{
+    background-color: black;
+    color: white;
+}
+
+body {
+    color: rgb(209, 205, 199);
+    background-color: rgb(24, 26, 27);
+}
+
+html {
+    background-color: #181a1b;
+}

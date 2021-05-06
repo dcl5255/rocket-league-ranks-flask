@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    {% if session['recent_searches'] %}
+        <div class="mb-2 mt-3 text-center">
+            {% for search in session['recent_searches']|reverse %}
+                <div class="" style="display: inline-block;">
+                    <a href={{ search['url'] }} class="btn btn-warning"><img src="{{ url_for('static', filename='icons/' + search['platform'] + '.png') }}" width="30" height="30"> {{ search['name'] }}</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <form action="" method="GET">
+        <div class="input-group mb-2 mt-2 w-75 mx-auto">
+            <input type="text" class="form-control" name="name" placeholder="Username" {% if form.name %} value={{form.name}} {% endif %} required>
+            <div class="styled-select input-group-append w-25">
+                <select name="platform" class="form-control" >
+                    <option value="epic" {% if form.platform == 'epic' %} selected {% endif %}>Epic Games</option>
+                    <option value="steam" {% if form.platform == 'steam' %} selected {% endif %}>Steam</option>
+                    <option value="psn" {% if form.platform == 'psn' %} selected {% endif %}>Playstation</option>
+                    <option value="xbl" {% if form.platform == 'xbl' %} selected {% endif %}>Xbox</option>
+                    <option value="switch" {% if form.platform == 'switch' %} selected {% endif %}>Nintendo Switch</option>
+                </select>
+            </div>
+            <div class="input-group-append">
+                <button type="submit" class="form-control">Search</button>
+            </div>
+        </div>
+    </form>
+    {% if message %}
+        <h3>{{message}}</h3>
+    {% endif %}
+
+    {% if data %}
+        <div class="text-center">
+            <h1><img src="{{ url_for('static', filename='icons/' + data['platform'] + '-inverse.png') }}" width="30" height="30"> {{data.name}} </h1>
+        
+        {% if data['ranks']['1v1'] %}
+            <h3>1v1s: {{ data['ranks']['1v1']['tier'] }} Division {{ data['ranks']['1v1']['division'] }} <small>(MMR: {{ data['ranks']['1v1']['mmr'] }})</small></h3>
+        {% endif %}
+
+        {% if data['ranks']['2v2'] %}
+            <h3>2v2s: {{ data['ranks']['2v2']['tier'] }} Division {{ data['ranks']['2v2']['division'] }} <small>(MMR: {{ data['ranks']['2v2']['mmr'] }})</small></h3>
+        {% endif %}
+
+        {% if data['ranks']['3v3'] %}
+            <h3>3v3s: {{ data['ranks']['3v3']['tier'] }} Division {{ data['ranks']['3v3']['division'] }} <small>(MMR: {{ data['ranks']['3v3']['mmr'] }})</small></h3>
+        {% endif %}
+
+        {% if data['ranks']['Rumble'] %}
+            <h3>Rumble: {{ data['ranks']['Rumble']['tier'] }} Division {{ data['ranks']['Rumble']['division'] }} <small>(MMR: {{ data['ranks']['Rumble']['mmr'] }})</small></h3>
+        {% endif %}
+
+        {% if data['ranks']['Snowday'] %}
+            <h3>Snowday: {{ data['ranks']['Snowday']['tier'] }} Division {{ data['ranks']['Snowday']['division'] }} <small>(MMR: {{ data['ranks']['Snowday']['mmr'] }})</small></h3>
+        {% endif %}
+        
+        {% if data['ranks']['Dropshot'] %}
+            <h3>Dropshot: {{ data['ranks']['Dropshot']['tier'] }} Division {{ data['ranks']['Dropshot']['division'] }} <small>(MMR: {{ data['ranks']['Dropshot']['mmr'] }})</small></h3>
+        {% endif %}
+
+        {% if data['ranks']['Hoops'] %}
+            <h3>Hoops: {{ data['ranks']['Hoops']['tier'] }} Division {{ data['ranks']['Hoops']['division'] }} <small>(MMR: {{ data['ranks']['Hoops']['mmr'] }})</small></h3>
+        {% endif %}
+        </div>
+
+    {% endif %}
+{% endblock %}
+
