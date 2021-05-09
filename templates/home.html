@@ -12,9 +12,9 @@
     {% endif %}
     <form action="" method="GET">
         <div class="input-group mb-2 mt-2 w-75 mx-auto">
-            <input type="text" class="form-control" name="name" placeholder="Username" {% if form.name %} value={{form.name}} {% endif %} required>
+            <input type="text" class="form-control search-input" name="name" placeholder="Username" {% if form.name %} value={{form.name}} {% endif %} required>
             <div class="styled-select input-group-append w-25">
-                <select name="platform" class="form-control" >
+                <select name="platform" class="form-control platform-input" >
                     <option value="epic" {% if form.platform == 'epic' %} selected {% endif %}>Epic Games</option>
                     <option value="steam" {% if form.platform == 'steam' %} selected {% endif %}>Steam</option>
                     <option value="psn" {% if form.platform == 'psn' %} selected {% endif %}>Playstation</option>
@@ -23,12 +23,12 @@
                 </select>
             </div>
             <div class="input-group-append">
-                <button type="submit" class="form-control">Search</button>
+                <button type="submit" class="form-control button-input">Search</button>
             </div>
         </div>
     </form>
     {% if message %}
-        <h3>{{message}}</h3>
+        <h3 class="text-center">{{message}}</h3>
     {% endif %}
 
     {% if data %}
